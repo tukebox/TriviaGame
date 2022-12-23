@@ -1,10 +1,13 @@
 package com.ohj4.triviagame;
 
 import javax.swing.*;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
 import java.awt.event.*;
 import java.awt.*;
 import java.awt.Dimension;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class ScoresScreen {
@@ -87,6 +90,15 @@ public class ScoresScreen {
             new Object [][] {
                 {"Tuukka", 2500},
                 {"Juho", 2300},
+                {"gorooo", 550},
+                {"tupperis", 900},
+                {"keissi", 870},
+                {"pappe", 200},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
                 {null, null},
                 {null, null},
                 {null, null},
@@ -478,7 +490,7 @@ public class ScoresScreen {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration                   
 
-
+        // Here points are updated under last game -title
     private void updateComponents() {
         if (GameState.getInstance().getGameConcluded()) {
 
@@ -506,6 +518,36 @@ public class ScoresScreen {
             PointsFourth.setText(String.valueOf(players.get(3).getScore()));
             PointsFourth.setForeground(players.get(3).getGameColor());
 
+
+            int size = LeaderboardsTable.getRowCount();
+            TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(LeaderboardsTable.getModel());
+
+           //for (int i=0; i<size; i++){
+
+                LeaderboardsTable.setValueAt(players.get(0).getName(), LeaderboardsTable.getRowCount()-1, 0);
+                LeaderboardsTable.setValueAt(Integer.valueOf(players.get(0).getScore()), LeaderboardsTable.getRowCount()-1, 1);
+
+                if (!players.get(1).getName().isEmpty()){
+                    LeaderboardsTable.setValueAt(players.get(1).getName(), LeaderboardsTable.getRowCount()-2, 0);
+                    LeaderboardsTable.setValueAt(Integer.valueOf(players.get(1).getScore()), LeaderboardsTable.getRowCount()-2, 1);
+                }
+                if (!players.get(2).getName().isEmpty()){
+                    LeaderboardsTable.setValueAt(players.get(2).getName(), LeaderboardsTable.getRowCount()-3, 0);
+                    LeaderboardsTable.setValueAt(Integer.valueOf(players.get(2).getScore()), LeaderboardsTable.getRowCount()-3, 1);
+                }
+                if (!players.get(3).getName().isEmpty()){
+                    LeaderboardsTable.setValueAt(players.get(3).getName(), LeaderboardsTable.getRowCount()-4, 0);
+                    LeaderboardsTable.setValueAt(Integer.valueOf(players.get(3).getScore()), LeaderboardsTable.getRowCount()-4, 1);
+                }
+
+         //   }   
+           LeaderboardsTable.setRowSorter(rowSorter);
+           List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+
+            sortKeys.add(new RowSorter.SortKey(1, SortOrder.DESCENDING));
+            rowSorter.setSortKeys(sortKeys);
+            rowSorter.sort();
+            
         }
     }
 

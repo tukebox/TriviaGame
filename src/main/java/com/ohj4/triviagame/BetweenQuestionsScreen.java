@@ -24,7 +24,7 @@ public class BetweenQuestionsScreen {
         AnswerLabel = new javax.swing.JLabel();
         LabelP = new javax.swing.JLabel();
         PlayerNameIn = new javax.swing.JLabel();
-        TImer = new javax.swing.JLabel();
+        Timer = new javax.swing.JLabel();
         Answer = new javax.swing.JLabel();
         PointsLabel = new javax.swing.JLabel();
         CorrectIcon = new javax.swing.JLabel();
@@ -54,9 +54,9 @@ public class BetweenQuestionsScreen {
         PlayerNameIn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         PlayerNameIn.setText("Next player in:");
 
-        TImer.setFont(new java.awt.Font("DejaVu Sans", 1, 36)); // NOI18N
-        TImer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        TImer.setText("5");
+        Timer.setFont(new java.awt.Font("DejaVu Sans", 1, 36)); // NOI18N
+        Timer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Timer.setText("5");
 
         Answer.setFont(new java.awt.Font("DejaVu Sans", 1, 24)); // NOI18N
         Answer.setText("Answer:");
@@ -87,7 +87,7 @@ public class BetweenQuestionsScreen {
                         .addGap(143, 143, 143)
                         .addComponent(PlayerNameIn, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(TImer, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Timer, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(CorrectIcon)
                 .addGap(103, 103, 103))
@@ -115,7 +115,7 @@ public class BetweenQuestionsScreen {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PlayerNameIn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TImer, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Timer, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(147, 147, 147))
         );
         
@@ -142,7 +142,7 @@ public class BetweenQuestionsScreen {
     private javax.swing.JLabel PlayerAnswer;
     private javax.swing.JLabel PlayerNameIn;
     private javax.swing.JLabel PointsLabel;
-    private javax.swing.JLabel TImer;
+    private javax.swing.JLabel Timer;
     private javax.swing.JLabel WrongIcon;
     // End of variables declaration  
     
@@ -153,7 +153,7 @@ public class BetweenQuestionsScreen {
             PlayerAnswer.setText(player.getName());
             AnswerLabel.setText(player.getLastAnswerString());
             PointsLabel.setText(String.valueOf(player.getLastAnswerScore()));
-            TImer.setText("5");
+            Timer.setText("5");
             if (player.getLastAnswerScore() > 0) {
                 CorrectIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ohj4/triviagame/icons/Correct.png"))); // NOI18N
             }
@@ -163,9 +163,9 @@ public class BetweenQuestionsScreen {
 
             ActionListener turnTimer = new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
-                    Integer timeRemaining = Integer.parseInt(TImer.getText());
+                    Integer timeRemaining = Integer.parseInt(Timer.getText());
                     if (timeRemaining > 0) {
-                        TImer.setText(String.valueOf(--timeRemaining));
+                        Timer.setText(String.valueOf(--timeRemaining));
                     }
                 }
             };
@@ -191,7 +191,7 @@ public class BetweenQuestionsScreen {
                 }
             };
             
-            Timer turnEnderTimer = new Timer(5000, turnEnder);
+            Timer turnEnderTimer = new Timer(2000, turnEnder);
             turnEnderTimer.setRepeats(false);
             turnEnderTimer.start();
     }
