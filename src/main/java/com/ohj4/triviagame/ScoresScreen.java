@@ -1,6 +1,7 @@
 package com.ohj4.triviagame;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -83,9 +84,11 @@ public class ScoresScreen {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Scores");
 
-        LeaderboardsTable.setBackground(new java.awt.Color(0, 102, 102));
+        LeaderboardsTable.setBackground(new java.awt.Color(28, 226 , 61));
         LeaderboardsTable.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(102, 0, 102)));
-        LeaderboardsTable.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        LeaderboardsTable.setFont(new java.awt.Font("DejaVu Sans", 0, 16)); // NOI18N
+        LeaderboardsTable.setRowHeight(20);
+
         LeaderboardsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Tuukka", 2500},
@@ -94,10 +97,6 @@ public class ScoresScreen {
                 {"tupperis", 900},
                 {"keissi", 870},
                 {"pappe", 200},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
                 {null, null},
                 {null, null},
                 {null, null},
@@ -127,6 +126,13 @@ public class ScoresScreen {
                 return canEdit [columnIndex];
             }
         });
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+        renderer.setHorizontalAlignment(JLabel.CENTER);
+        LeaderboardsTable.setDefaultRenderer(Object.class, renderer);
+        LeaderboardsTable.getColumnModel().getColumn(1).setCellRenderer(renderer);
+        // for (int i=0; i<10; i++){
+        //     LeaderboardsTable.getColumnModel().getColumn(i).setCellRenderer(renderer);
+        // }
         LeaderboardsTable.setGridColor(new java.awt.Color(153, 255, 255));
         LeaderboardsTable.setSelectionBackground(new java.awt.Color(204, 0, 204));
         LeaderboardsTable.getTableHeader().setReorderingAllowed(false);

@@ -224,7 +224,8 @@ public class GameScreen{
         TimerLabel.setFont(new java.awt.Font("Nimbus Roman", 1, 36)); // NOI18N
         TimerLabel.setForeground(new java.awt.Color(255, 51, 255));
         TimerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        TimerLabel.setText("0:28");
+        //tähän timeri toimimaan
+       // TimerLabel.setText();
 
         B_Label.setBackground(new java.awt.Color(102, 0, 102));
         B_Label.setFont(new java.awt.Font("DejaVu Sans", 0, 24)); // NOI18N
@@ -442,6 +443,25 @@ public class GameScreen{
     private void updateComponents() {
 
         GameState game = GameState.getInstance();
+
+        TimerLabel.setText(game.getTimerValue().toString());
+
+        ActionListener timer = new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                Integer timeRemaining = Integer.parseInt(TimerLabel.getText());
+                // if (timeRemaining > 0) {
+                //     TimerLabel.setText(String.valueOf(--timeRemaining));
+                // }
+            }
+        };
+        
+        final Timer gameTimer = new Timer(1000, timer);
+        gameTimer.start();
+
+        Timer turnEnderTimer = new Timer(game.getTimerValue() * 1000, timer);
+            turnEnderTimer.setRepeats(false);
+            turnEnderTimer.start();
+
 
         playerTurnLabel.setText(game.getCurrentPlayerName());
         QuestionCounter.setText(game.getRoundDisplay());

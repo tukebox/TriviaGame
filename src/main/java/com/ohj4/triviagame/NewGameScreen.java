@@ -207,6 +207,7 @@ public class NewGameScreen implements ActionListener{
         panel.add(timeSlider);
 
 
+
         //Category label and ComboBox
         categoryLabel = new JLabel("CATEGORY");
         categoryLabel.setBounds(100, 520, 200, 40);
@@ -260,7 +261,9 @@ public class NewGameScreen implements ActionListener{
                         players.add(player4Text.getText());
                     }
                     GameState game = GameState.getInstance();
-                    if (game.initializeGame(questionSlider.getValue(), players, categoryBox.getSelectedItem(), difficulty.getSelection().getActionCommand())) {
+                    // alle timeSlider.getvalue
+                    if (game.initializeGame(questionSlider.getValue(), players, categoryBox.getSelectedItem(), 
+                        difficulty.getSelection().getActionCommand(), timeSlider.getValue())) {
                         CardLayoutManager.getInstance().setScreen(e);
                     }
                     else {

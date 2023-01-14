@@ -27,6 +27,7 @@ public class GameState {
     private Integer roundCounter;
     private Player currentPlayer;
     private boolean gameConcluded;
+    private Integer timer;
 
     public static synchronized GameState getInstance() {
         if (null == singleton) {
@@ -35,7 +36,11 @@ public class GameState {
         return singleton;
     }
 
-    public boolean initializeGame(int numQuestions, List<String> names, Object cat, String difficulty) {
+    public Integer getTimerValue(){
+        return timer;
+    }
+
+    public boolean initializeGame(int numQuestions, List<String> names, Object cat, String difficulty, int timerValue) {
 
         List<Color> colorList = new ArrayList<Color>();
 
@@ -50,7 +55,7 @@ public class GameState {
         gamePlayers = new ArrayList<Player>();
         gameRounds = numQuestions;
         roundCounter = 1;
-        
+        timer = timerValue;
 
         for (int i = 0; i < names.size(); i++) {
             gamePlayers.add(new Player(names.get(i), true, colorList.get(i)));
@@ -92,6 +97,8 @@ public class GameState {
             fetchCategories();
         return categories.keySet();
     }
+
+    //public 
 
     private boolean fetchQuestions(Integer numQuestions, Integer category, String difficulty) {
 
@@ -205,6 +212,7 @@ public class GameState {
                 }
             }
         }
+        
         if (roundCounter > gameRounds) {
             gameConcluded = true;
             return false;
